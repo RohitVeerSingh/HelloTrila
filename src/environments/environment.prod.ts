@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  name: 'Live',
+  apiUrl: 'https://live.example.com/api'
 };

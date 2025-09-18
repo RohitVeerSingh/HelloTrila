@@ -53,3 +53,5 @@ import 'zone.js';  // Included with Angular CLI.
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
+import * as localforage from 'localforage';
+(window as any).localforage = localforage;

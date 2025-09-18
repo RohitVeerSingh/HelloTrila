@@ -1,0 +1,36 @@
+ <ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Project Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ng-container *ngIf="project; else dummy">
+    <h2>{{ project.title }}</h2>
+    <p>{{ project.description }}</p>
+  </ng-container>
+
+  <ng-template #dummy>
+    <h2>Project Details</h2>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nec
+      lectus ac odio pulvinar dictum.
+    </p>
+    <ion-button (click)="goBack()">Back</ion-button>
+  </ng-template>
+</ion-content> 
+
+
+<!-- <ion-content >
+  <ion-card *ngIf="project">
+    <ion-card-header>
+      <ion-card-title>{{ project.title }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>{{ project.description }}</p>
+      <p><strong>Created:</strong> {{ project.createdAt | date:'medium' }}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-button expand="full" (click)="goBack()">Back</ion-button>
+</ion-content> -->

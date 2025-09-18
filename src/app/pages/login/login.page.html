@@ -1,0 +1,18 @@
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <form [formGroup]="loginform" (ngSubmit)="onSubmit()">
+      <ion-item>
+        <ion-label position="floating">Username</ion-label>
+        <ion-input type="text" name="username" formControlName="username" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Password</ion-label>
+        <ion-input type="password" name="password" formControlName="password" required></ion-input>
+      </ion-item>
+
+      <ion-button expand="block" type="submit" [disabled]="!loginform.valid">Login</ion-button>
+    </form>
+    <ion-button expand="block" fill="clear" routerLink="/register" class="regitserBtn">Don't have an account? Sign Up</ion-button>
+  </ion-card>
+</ion-content>

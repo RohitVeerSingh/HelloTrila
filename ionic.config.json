@@ -1,5 +1,6 @@
 {
   "name": "HelloTrila",
   "integrations": {},
-  "type": "angular"
+  "type": "angular",
+  "app_id": ""
 }

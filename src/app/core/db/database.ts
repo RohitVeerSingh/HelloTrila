@@ -40,6 +40,15 @@ export class Database {
         entities: [Project],
         synchronize: true,
       });
+      this.ds = new DataSource({
+        type: 'capacitor',
+        database: '/assets/sqlite3/sqlite3.db', // Use the determined path
+        driver: sqlite,
+        entities: [Project],
+        synchronize: true, // Auto-create tables (use only in development)
+        logging: true, // Enable to debug SQL queries
+      });
+      await this.ds.initialize();
       this.repo = connection.getRepository(Project);
       this.dbInitialized = true;
       console.log('Database initialized', this.repo);
@@ -50,7 +59,9 @@ export class Database {
     }
   }
 
-  getProjects() { // fetch all projects
+  async getProjects() { // fetch all projects
+   await this.initDB(); // Ensure DB is initialized
+    if (!this.repo) throw new Error('Repository not initialized');
     return this.repo.find();
   }
 

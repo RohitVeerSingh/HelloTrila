@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment.prod';
 import { ProjectService } from '../core/project/project-service';
 import { ProjectPage } from '../pages/project/project.page';
 import { Database } from '../core/db/database';
+import { Capacitor } from '@capacitor/core';
 
 @Component({
   selector: 'app-home',

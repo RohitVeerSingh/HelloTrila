@@ -10,7 +10,7 @@ import { CapacitorSQLite, SQLiteConnection } from '@capacitor-community/sqlite';
 })
 export class ProjectService {
   private repo!: Repository<Project>;
-
+  private sqlite = new SQLiteConnection(CapacitorSQLite);
 
   constructor(private db: Database) {
     const sqlite = new SQLiteConnection(CapacitorSQLite);
@@ -39,6 +39,9 @@ export class ProjectService {
       const proj = repo.create({ title, description, createdAt: new Date() });
       const savedProj = await repo.save(proj);
       console.log('Saved project:', savedProj);
+      if (Capacitor.getPlatform() === 'web' || Capacitor.getPlatform() === 'android') {
+        await this.sqlite.saveToStore('projectdb');
+      }
       return savedProj;
     } catch (error) {
       console.error('Error saving project:', error);
@@ -50,10 +53,16 @@ export class ProjectService {
   async update(id: number, title: string, description: string) {
     const repo = await this.getRepo();
     await repo.update(id, { title, description });
+    if (Capacitor.getPlatform() === 'web' || Capacitor.getPlatform() === 'android') {
+      await this.sqlite.saveToStore('projectdb');
+    }
   }
 
   async delete(id: number) {
     const repo = await this.getRepo();
     await repo.delete(id);
+      if (Capacitor.getPlatform() === 'web' || Capacitor.getPlatform() === 'android') {
+      await this.sqlite.saveToStore('projectdb');
+    }
   }
 }
